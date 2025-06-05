@@ -33,7 +33,7 @@ const revert = (reference) => {
     <ul v-if="transactions.length">
       <li v-for="tx in transactions" :key="tx.reference">
         {{ tx.type }} - {{ tx.amount }} - {{ tx.status }}
-        <button @click="revert(tx.reference)" :disabled="tx.status === 'reversed'">Reverter</button>
+        <button @click="revert(tx.reference)" :disabled="tx.status === 'reversed' || tx.type === 'reversal'">Reverter</button>
       </li>
     </ul>
     <p v-else>Nenhuma transação encontrada.</p>

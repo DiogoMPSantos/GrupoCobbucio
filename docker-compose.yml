@@ -1,0 +1,49 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: finance-wallet 
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: grupoCobuccio
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    ports:
+      - "8080:8080"
+    environment:
+      SWAGGER_JSON: /docs/openapi.yaml
+    volumes:
+      - ./src/resources/docs/openapi.yaml:/docs/openapi.yaml:ro
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev -- --host
+    depends_on:
+      - app
+
+volumes:
+  dbdata:

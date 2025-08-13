@@ -2,6 +2,10 @@
 
 This is the frontend for the Digital Wallet application, built using Vue 3 and configured to run with Docker.
 
+## Note
+
+The commit history is not available because this was a private challenge that was only made public after its conclusion.
+
 ## 🧰 Requirements
 
 - Docker

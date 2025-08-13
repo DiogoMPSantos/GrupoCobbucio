@@ -1,6 +1,11 @@
 
 # Wallet API
 
+
+## Note
+
+The commit history is not available because this was a private challenge that was only made public after its conclusion.
+
 ## Description
 
 This project is a simple financial wallet API where users can register, login, deposit money, transfer balance to other users, and reverse transactions if needed.  
